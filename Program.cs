@@ -10,7 +10,7 @@ namespace Анкета_с_методами
             Result(user);
            
         }
-        static (string Name, string Surname, int Age, bool Pet, int numPet, string[] animal, int favcolor, string[] colors) Anketa()
+        static (string, string, int, bool, int, string[], int, string[]) Anketa()
         {
             string Name, Surname;
             int Age, 
