@@ -94,18 +94,18 @@ namespace Анкета_с_методами
             if (temp == "да")
             {
                 pet = true;
-                return pet;
+                return true;
             }
-            if(temp == "нет")
+            if (temp == "нет")
             {
                 pet = false;
-                return pet;
+                return false;
             }
             else
             {
                 Console.WriteLine("Некорректное значение");
                 return BoolConvert(message, out pet);
-                
+
             }
         }
         }
