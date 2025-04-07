@@ -23,7 +23,7 @@ namespace Анкета_с_методами
             Console.Write("Введите Вашу фамилию: ");
             Surname = Console.ReadLine();
             Age = FaceControl("Введите Ваш возраст: ");
-            Pet = BoolConvert("У Вас есть домашние питомцы? (да/нет)", out Pet);
+            Pet = BoolConvert("У Вас есть домашние питомцы? (да/нет): ", out Pet);
             if (Pet)
             {
                 numPet = FaceControl("Введите количество домашних питомцев: ");
@@ -73,13 +73,13 @@ namespace Анкета_с_методами
             Console.WriteLine($"У Вас есть питомец: {kortej.Pet}");
             if (kortej.Pet)
             {
-                Console.WriteLine($"У Вас {kortej.numPet} питомцев(а), которых зовут: ");
+                Console.WriteLine($"Количество питомцев: {kortej.numPet} \nИх имена: ");
                 for (int i = 0; i< kortej.numPet; i++)
                 {
                     Console.WriteLine(kortej.animal[i]);
                 }
             }
-            Console.WriteLine($"У Вас {kortej.favcolor} любимых цвета(ов): ");
+            Console.WriteLine($"Количество любимых цветов: {kortej.favcolor} \nЛюбимые цвета: ");
             for (int j = 0; j < kortej.favcolor; j++)
             {
                 Console.WriteLine(kortej.colors[j]);
