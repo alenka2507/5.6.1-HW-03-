@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.Design;
+﻿using System.ComponentModel;
+using System.ComponentModel.Design;
 
 namespace Анкета_с_методами
 {
@@ -21,38 +22,33 @@ namespace Анкета_с_методами
             Name = Console.ReadLine();
             Console.Write("Введите Вашу фамилию: ");
             Surname = Console.ReadLine();
-            Console.Write("Введите Ваш возраст: ");
-            Age = int.Parse(Console.ReadLine());
-            FaceControl(ref Age);
-            Console.Write("У Вас есть домашние питомцы? (true/false)");
-            Pet = bool.Parse(Console.ReadLine());
+            Age = FaceControl("Введите Ваш возраст: ");
+            Pet = BoolConvert("У Вас есть домашние питомцы? (да/нет)", out Pet);
             if (Pet)
             {
-                Console.Write("Введите количество домашних питомцев: ");
-                numPet = int.Parse(Console.ReadLine());
-                FaceControl(ref numPet);
-                animal = Animal(numPet);
+                numPet = FaceControl("Введите количество домашних питомцев: ");
+               animal = Animal(numPet);
             }
-            Console.Write("Введите количество любимых цветов:");
-            favcolor = int.Parse(Console.ReadLine());
-            FaceControl(ref favcolor);
-            colors = InsertColor(favcolor);
+            favcolor = FaceControl("Введите количество любимых цветов: ");
+           colors = InsertColor(favcolor);
             return (Name, Surname, Age, Pet, numPet, animal, favcolor, colors);
         }
-        static void FaceControl(ref int ID)
+        static int FaceControl(string control)
         {
-            while (ID <= 0)
+            Console.Write(control);
+            int ID;
+            while (!int.TryParse(Console.ReadLine(), out ID)|| ID <= 0)
             {
                 Console.Write("Введенное число некорректно. Введите значение больше 0: ");
-                ID = int.Parse(Console.ReadLine());
             }
+            return ID;
         }
         static string[] Animal(int num)
         {
             string[] name = new string[num];
                 for (int i = 0; i < num; i++)
                 {
-                    Console.WriteLine($"Введите кличку питомца N {i+1}");
+                    Console.Write($"Введите кличку питомца N {i+1}: ");
                     name[i] = Console.ReadLine();
                 }
             return name;
@@ -64,7 +60,7 @@ namespace Анкета_с_методами
             string[] Colors = new string[num];
             for (int i = 0; i < num; i++)
             {
-                Console.WriteLine($"Введите любимый цвет N {i+1}");
+                Console.Write($"Введите любимый цвет N {i+1}: ");
                 Colors[i] = Console.ReadLine();
             }
             return Colors;
@@ -89,7 +85,29 @@ namespace Анкета_с_методами
                 Console.WriteLine(kortej.colors[j]);
             }
 
-        }            
+        }
+       static bool BoolConvert(string message, out bool pet)
+        {
+            Console.Write(message);
+            string temp = Console.ReadLine().ToLower();
+
+            if (temp == "да")
+            {
+                pet = true;
+                return pet;
+            }
+            if(temp == "нет")
+            {
+                pet = false;
+                return pet;
+            }
+            else
+            {
+                Console.WriteLine("Некорректное значение");
+                return BoolConvert(message, out pet);
+                
+            }
+        }
         }
 
     }
